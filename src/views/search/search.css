@@ -1,0 +1,15 @@
+.searchList .am-list-item .am-list-line .am-list-content{
+    line-height: 3;
+    font-size: 20px;
+}
+.searchList #hotSongs{
+    border-bottom: 1px solid #c1c1c1;
+}
+.searchList #hotSongs .am-list-content{
+    color: blue;
+    line-height: 2;
+}
+.searchList .songLists .specialData .am-list-content{
+    font-size: 20px;
+    color: #c1c1c1;
+}
