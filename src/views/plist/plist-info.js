@@ -3,6 +3,7 @@ import {getDataComponent} from '../../components/getDataComponent'
 import {getGeDanInfo} from '../../server/plist'
 import {withRouter} from 'react-router-dom'
 import SingerList from '../comm/songList'
+
 class PlistInfo extends Component {
     constructor(props){
         super(props)
@@ -19,8 +20,8 @@ class PlistInfo extends Component {
             })
         }) 
     }
+   
   render() {
-      
     return (
         <div className='imgBox'>
             <img 
@@ -34,4 +35,4 @@ class PlistInfo extends Component {
     )
   }
 }
-export default withRouter(PlistInfo)
+export default PlistInfo

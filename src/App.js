@@ -9,62 +9,45 @@ import PlayBottom from './components/playerBottom/playerBottom'
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import jsonp from 'jsonp'
-// import fetchJsonp from 'fetch-jsonp';
-let data = {
-  hash : '',
-  songList : []
-}
+import {connect} from 'react-redux'
+import BScroll from 'better-scroll'
 
-function reducer(state={},action){
-  switch(action.type){
-    case 'updateHash' :
-      return {
-        ...state,
-        hash : action.hash
-      }
-    break; 
-    case 'updateSongList':
-    return {
-      ...state,
-      songList : action.songList
+class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      bs : ''
     }
-    default:
-      return state;
-    break;
   }
-}
-
-let store = createStore(reducer,data);
-
-export default class App extends Component {
-    // componentDidMount(){
-    //     // axios.get('/kugou?json=true').then((data)=>{
-    //     // })
-    //     jsonp('http://mobilecdn.kugou.com/api/v3/search/song',{
-    //       param :'format=jsonp&keyword=%E8%96%9B%E4%B9%8B%E8%B0%A6&page=1&pagesize=30&showtype=1&callback'
-    //     },(err,data) => {
-    //       if(err){
-    //         console.log(err)
-    //       }else{
-    //         console.log(data)
-    //       }
-    //     })
-          
-       
-    // }
+  componentDidMount(){
+    new BScroll('.content',{
+      click : true,
+      scrollX : false,
+      scrollY : true
+      // bounce: false 是否有回弹效果
+    })
+  }
   render() {
     return (
-      <Provider store={store}>
         <Router>
         <div>
           <Header />
-          <div className="content">
-            <Routes />
+          <div className="wrap" style={{padding : this.props.isPadding ? '1.73rem 0' : '1.73rem 0 0 0'}}>
+            <div className="content">
+            <div className="scrollDiv">
+              <Routes />
+            </div>
+            </div>
           </div>
           <PlayBottom/>
         </div>
       </Router>
-      </Provider>
     )
   }
 }
+function mapStateToProps(state){
+  return {
+    isPadding : state.isPadding
+  }
+}
+export default connect(mapStateToProps)(App);

@@ -12,5 +12,13 @@
   z-index: 999;
 }
 .content{
-  padding: 1.73rem 0;
+  height: 87vh;
+  overflow: hidden;
+}
+.wrap{
+  padding: 1.73rem 0 0 0;
+  overflow: hidden;
+}
+.scrollDiv{
+
 }

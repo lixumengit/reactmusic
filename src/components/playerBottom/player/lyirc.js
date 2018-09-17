@@ -5,31 +5,8 @@ export default class Lyrcc extends Component {
     return (
       <div className="m-lyric-area">
         <div className="m-lyric">
-          <p>菊花台</p>
-          <p>菊花台</p>
-          <p>菊花台</p>
-          <p>菊花台</p>
-          <p>菊花台</p>
-          <p>菊花台</p>
-          <p>菊花台</p>
-          <p>菊花台</p>
-          <p>菊花台</p>
-          <p>菊花台</p>
-          <p>菊花台</p>
-          <p>菊花台</p>
-          <p>菊花台</p>
-          <p>菊花台</p>
-          <p>菊花台</p>
-          <p>菊花台</p>
-          <p>菊花台</p>
-          <p>菊花台</p>
-          <p>菊花台</p>
-          <p>菊花台</p>
-          <p>菊花台</p>
-          <p>菊花台</p>
-          <p>菊花台</p>
-          <p>菊花台</p>
-          <p>菊花台</p>
+
+          <p>暂无歌词</p>
         </div>
       </div>
     )

@@ -4,6 +4,7 @@ import './player.css'
 import {connect} from 'react-redux';
 import {getSongMp3}  from '../../server/searchMp3'
 import classnames from 'classnames';
+import Player from './player/player';
 class PlayBottom extends Component {
   constructor(props){
     super(props);
@@ -12,7 +13,10 @@ class PlayBottom extends Component {
 
       },
       isPlay : true,
-      index : 0
+      index : 0,
+      isShowPlayer : false,
+      duration : 0, //总时间
+      currentTime : 0 //当前播放时间
     }
     this.audio = React.createRef();
   }
@@ -27,6 +31,7 @@ class PlayBottom extends Component {
           playInfo: data,
           isPlay : true,
           index : index
+         
         })
       })
     }
@@ -70,6 +75,31 @@ class PlayBottom extends Component {
     let preHash = this.props.songList[index].hash;
     this.getSongInfoMethodByHash(preHash);
   }
+  //点击播放的头像进入播放详细页面
+  goPlayer = () => {
+    this.setState({
+      isShowPlayer : true
+    })
+  }
+  //播放位置发生变化
+  timeUpdate = () => {
+    this.setState({
+      currentTime : this.audio.current.currentTime
+    })
+  }
+  //音频加载完成时
+  loadedmetadata = () => {
+    this.setState({
+      duration : this.audio.current.duration
+    })
+  }
+  //子级改时间
+  updateCurrentTime = (currtTime) => {
+    this.setState({
+      currentTime : currtTime
+    })
+    this.audio.current.currentTime = currtTime;
+  }
   render() {
     return this.props.hash ? ReactDOM.createPortal(
       <div className="play-bottom">
@@ -78,9 +108,11 @@ class PlayBottom extends Component {
        src={this.state.playInfo.url} 
        ref = {this.audio}
        onEnded = {this.nextSong}
+       onTimeUpdate = {this.timeUpdate}
+       onLoadedMetadata = {this.loadedmetadata}
        />
         <div className="play-left">
-          <img src={this.state.playInfo.imgUrl && this.state.playInfo.imgUrl.replace('{size}',240)} alt="" />
+          <img onClick={this.goPlayer} src={this.state.playInfo.imgUrl && this.state.playInfo.imgUrl.replace('{size}',240)} alt="" />
             <p>
               <span>{this.state.playInfo.songName}</span>
               <span>{this.state.playInfo.singerName}</span>
@@ -102,6 +134,9 @@ class PlayBottom extends Component {
             onClick={this.nextSong}
             ></div>
           </div>
+          {
+            this.state.isShowPlayer ? <Player updateCurrentTime={this.updateCurrentTime} nextSong={this.nextSong} preSong={this.preSong} PlayOrPause={this.PlayOrPause} {...this.state}/> : null
+          }
         </div>
     ,document.body) : null
   }

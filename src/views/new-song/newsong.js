@@ -11,7 +11,7 @@ class NewSong extends Component {
       let {data} = this.props.data;
       let {banner} = this.props.data
     return (
-      <div>
+      <React.Fragment>
           <Carousel
         autoplay={true}
         infinite
@@ -37,7 +37,7 @@ class NewSong extends Component {
       </Carousel>
             <SongList songList={data} />
             
-      </div>
+      </React.Fragment>
     )
   }
 }

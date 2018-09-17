@@ -3,7 +3,7 @@ import {getDataComponent} from '../../../components/getDataComponent';
 import SingerList from '../../comm/songList'
 import './singer-info.css'
 class SingerInfo extends Component {
-    
+ 
   render() {
     let {info,data} = this.props.data;
     return (

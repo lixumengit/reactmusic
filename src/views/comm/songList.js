@@ -8,7 +8,6 @@ class Songlist extends Component {
     songList:[]
   }
   render() {
-    console.log(this.props)
     return (
       <div>
         <List className="my-list">
@@ -20,6 +19,7 @@ class Songlist extends Component {
                   extra={<i style={{ fontSize: '1rem' }}
                     className="iconfont icon-xiazai"></i>}
                   onClick={() => {
+                    this.props.dispatch({type:'changePadding',isPadding:true})
                     this.props.dispatch({type:'updateHash',hash:item.hash})
                     this.props.dispatch({type:'updateSongList',songList:this.props.songList})
                   }}
